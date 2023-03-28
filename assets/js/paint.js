@@ -1,71 +1,93 @@
+//Adds event listeners to all the images on the webpage and calls the addOpacity and removeOpacity functions when the user hovers over or moves away from the image.//
+
 function configureListeners() {
-    let images = // select img elements  
+    let images = document.getElementsByTagName('img')
 
 
-     for (var i = 0; i < images.length; i++) {        
-        // iterate over images and add mouseover event listeners      
+    for (var i = 0; i < images.length; i++) {
+        document.getElementById(images[i].id).addEventListener('mouseover',addOpacity,false);
+        document.getElementById(images[i].id).addEventListener('mouseout',removeOpacity,true);            
     } 
 }
-
+//Adds the 'dim' class to the image and calls the getProductInfo function with the id of the image hovered over.//
 function addOpacity(event) {
-    // add appropriate CSS class
+    this.classList.add('dim');
     getProductInfo(event.target.id);     
 }
-
+//Removes the 'dim' class from the image and clears the price and color name displayed.//
 function removeOpacity(event) {
-     //remove appropriate CSS class
-
+    this.classList.remove('dim');
     let element = document.getElementById('color-price');
-        element.textContent = '';
+    element.textContent = '';
         
     let color = document.getElementById('color-name');
-        color.textContent = ''; 
-
-    event.preventDefault();    
+    color.textContent = ''; 
 }
 
+//Retrieves the price and color name for the selected paint color and updates the price and color name displayed.//
 function getProductInfo(paintColor) {
     let price;
     let colorName;  
     
     switch (paintColor) {
-        case 'pn1':           
-            // set variables for price and color name and invoke a function to update the price     
+        case 'pn1':
+            price = '$14.99';
+            colorName ='Lime Green';
+            updatePrice(colorName,price)                
             break;           
         case 'pn2':
-            // set variables for price and color name and invoke a function to update the price    
+            price = '$11.14';
+            colorName ='Medium Brown';
+            updatePrice(colorName,price)
             break;            
         case 'pn3':
-            // set variables for price and color name and invoke a function to update the price  
+            price = '$22.99';
+            colorName ='Royal Blue';
+            updatePrice(colorName,price)
             break;   
         case 'pn4':
-            // set variables for price and color name and invoke a function to update the price  
+            price = '$13.42';
+            colorName ='Solid Red';
+            updatePrice(colorName,price)
             break;   
         case 'pn5':
-            // set variables for price and color name and invoke a function to update the price       
+            price = '$21.98';
+            colorName ='Solid White';
+            updatePrice(colorName,price)
             break;   
         case 'pn6':
-            // set variables for price and color name and invoke a function to update the price        
+            price = '$4.99';
+            colorName ='Solid Black'
+            updatePrice(colorName,price)        
             break;   
         case 'pn7':
-            // set variables for price and color name and invoke a function to update the price 
+            price = '$8.22';
+            colorName ='Solid Cyan';
+            updatePrice(colorName,price) 
             break;   
         case 'pn8':
-            // set variables for price and color name and invoke a function to update the price   
+            price = '$11.99';
+            colorName ='Solid Purple ';
+            updatePrice(colorName,price)   
             break;   
         case 'pn9':
-            // set variables for price and color name and invoke a function to update the price 
+            price = '$14.99';
+            colorName ='Solid Yellow';
+            updatePrice(colorName,price)
+            
             break;   
-          default:              
+        default:              
     }
+
+//Updates the price and color name displayed on the webpage.
 
     function updatePrice(colorName, price)
     {       
-        let colorPrice = // select element with corresponding id
-        // display price
+        let colorPrice = document.getElementById('color-price')
+        colorPrice.textContent = price;
         
-        let color = // select element with corresponding id
-        //display color name
+        let color = document.getElementById('color-name');
+        color.textContent = colorName
     }
     
 }
